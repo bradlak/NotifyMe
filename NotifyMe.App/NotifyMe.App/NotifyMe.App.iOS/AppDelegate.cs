@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using ImageCircle.Forms.Plugin.iOS;
 
 namespace NotifyMe.App.iOS
 {
@@ -23,6 +24,7 @@ namespace NotifyMe.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:TypeArguments="ViewModels:LoginViewModel"
+             xmlns:Ex="clr-namespace:NotifyMe.App.Extensions"
+             xmlns:ViewModels="clr-namespace:NotifyMe.App.ViewModel"
+             xmlns:views="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
+             x:Class="NotifyMe.App.Views.LoginPage" 
+             Style="{StaticResource contentPageStyle}"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="2*" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image Source="{Ex:ImageResource NotifyMe.App.Resources.Images.logo.PNG}" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Fill"
+               Margin="35"
+               Grid.Row="0"/>
+          <Button Text="Log in" 
+                  Command="{Binding LoginCommand}" 
+                  Style="{StaticResource buttonStyle}"
+                  Grid.Row="1"/>
+      </Grid>
+    </ContentPage.Content>
+</views:BasePage>

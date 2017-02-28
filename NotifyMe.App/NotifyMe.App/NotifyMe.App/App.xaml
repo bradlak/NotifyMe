@@ -1,0 +1,35 @@
+﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:Converters="clr-namespace:NotifyMe.App.Converters"
+             x:Class="NotifyMe.App.App">
+  <Application.Resources>
+    <ResourceDictionary>
+      <Converters:SelectedToBackgroundColorConverter x:Key="selectedBackgroundConverter" />
+
+      <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="#003338" />
+        <Setter Property="BarTextColor" Value="White" />
+      </Style>
+
+      <Style x:Key="contentPageStyle" TargetType="VisualElement">
+        <Setter Property="BackgroundColor" Value="#003338" />
+      </Style>
+
+      <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderRadius" Value="40" />
+        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="TextColor" Value="#FFBF65" />
+      </Style>
+      
+      
+      <Style x:Key="trackerListView" TargetType="ListView">
+        <Setter Property="SeparatorColor" Value="#003338"/>
+        <Setter Property="SeparatorVisibility" Value="Default" />
+      </Style>
+
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

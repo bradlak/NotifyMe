@@ -17,9 +17,9 @@ namespace NotifyMe.Backend
         public static void ConfigureMobileApp(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
-
+            config.MapHttpAttributeRoutes();
             new MobileAppConfiguration()
-                .UseDefaultConfiguration()
+               .MapApiControllers()
                 .ApplyTo(config);
 
             // Use Entity Framework Code First to create database tables based on your DbContext

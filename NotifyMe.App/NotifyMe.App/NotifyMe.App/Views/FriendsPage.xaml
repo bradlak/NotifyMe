@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:TypeArguments="ViewModels:FriendsViewModel"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:ViewModels="clr-namespace:NotifyMe.App.ViewModel"
+             xmlns:views="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
+             x:Class="NotifyMe.App.Views.FriendsPage" Title="Friend selection"
+             Style="{StaticResource contentPageStyle}">
+  <ContentPage.Content>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1*" />
+      <RowDefinition Height="3*" />
+    </Grid.RowDefinitions>
+    <Button Text="Show friends"
+            Style="{StaticResource buttonStyle}"
+            Command="{Binding GetFriendsCommand}"
+            Grid.Row="0"/>
+    <ListView
+           x:Name="ListView"
+           ItemsSource="{Binding Friends}"
+           IsGroupingEnabled="false"
+           HasUnevenRows ="false"
+           SeparatorColor="#FFBF65"
+           SeparatorVisibility="Default"
+           SelectedItem="{Binding SelectedFriend}"
+           RowHeight="100"
+           CachingStrategy="RetainElement"
+           Grid.Row="1">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout BackgroundColor="#486669">
+              <StackLayout  Orientation="Horizontal" Margin="16,0,0,0"  VerticalOptions="CenterAndExpand">
+                <controls:CircleImage Source="{Binding ImageUrl}" Aspect="AspectFit" WidthRequest="55" HeightRequest="55" />
+                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="16,0,0,0">
+                  <Label Text="{Binding Name}" TextColor="#FFBF65" FontSize="16" />
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Grid.Row="1">
+      <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#FFBF65" />
+      <Label Text="Loading..." TextColor="#FFBF65"/>
+    </StackLayout>
+  </Grid>
+  </ContentPage.Content>
+</views:BasePage>

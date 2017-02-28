@@ -1,0 +1,46 @@
+{[
+  {
+    "access_token": "someToken",
+    "expires_on": "someDate",
+    "provider_name": "facebook",
+    "user_claims": [
+      {
+        "typ": "typ",
+        "val": "id"
+      },
+      {
+        "typ": "typ",
+        "val": "email"
+      },
+      {
+        "typ": "typ",
+        "val": "full name"
+      },
+      {
+        "typ": "typ",
+        "val": "typ"
+      },
+      {
+        "typ": "typ",
+        "val": "name"
+      },
+      {
+        "typ": "typ",
+        "val": "surname"
+      },
+      {
+        "typ": "typ",
+        "val": "gender"
+      },
+      {
+        "typ": "urn:facebook:locale",
+        "val": "pl_PL"
+      },
+      {
+        "typ": "urn:facebook:timezone",
+        "val": "1"
+      }
+    ],
+    "user_id": "userId"
+  }
+]}
