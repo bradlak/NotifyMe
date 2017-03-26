@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -49,10 +50,10 @@ namespace NotifyMe.App.Infrastructure
                 var type = registeredPages[pageKey];
 
                 var page = App.Container.GetInstance(type, Guid.NewGuid().ToString());
-                var pageType = page.GetType();
+				//var vmType = page.GetType().GetTypeInfo().BaseType.GenericTypeArguments[0];
+
                 // fix with reflection
                 navigation.PushAsync(page as Page);
-                Messenger.Default.Send(new NavigationMessage(parameter));
             }
         }
 

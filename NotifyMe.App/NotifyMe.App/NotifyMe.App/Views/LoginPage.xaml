@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:TypeArguments="ViewModels:LoginViewModel"
@@ -18,10 +18,11 @@
                Aspect="AspectFit" 
                HorizontalOptions="Fill"
                Margin="35"
-               Grid.Row="0"/>
-          <Button Text="Log in" 
+               Grid.Row="0" />
+          <Button Text="LOG IN" 
                   Command="{Binding LoginCommand}" 
                   Style="{StaticResource buttonStyle}"
+				  VerticalOptions = "CenterAndExpand"
                   Grid.Row="1"/>
       </Grid>
     </ContentPage.Content>

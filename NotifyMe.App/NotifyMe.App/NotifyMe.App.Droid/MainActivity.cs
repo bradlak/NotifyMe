@@ -52,7 +52,11 @@ namespace NotifyMe.App.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ImageCircleRenderer.Init();
             LoadApplication(new App());
-            Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 0, 51, 56));
+
+			if (Build.VERSION.SdkInt > Build.VERSION_CODES.Kitkat)
+			{
+				Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 0, 51, 56));
+			}
 
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<RegistrationMessage>(this, MessageHandlerExecute);
         }
@@ -64,7 +68,6 @@ namespace NotifyMe.App.Droid
                 GcmClient.CheckDevice(this);
                 GcmClient.CheckManifest(this);
 
-                System.Diagnostics.Debug.WriteLine("Registering...");
                 GcmClient.Register(this, PushHandlerBroadcastReceiver.SENDER_IDS);
             }
             catch (Java.Net.MalformedURLException)

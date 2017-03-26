@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using NotifyMe.App.Infrastructure;
+using NotifyMe.App.Resources;
 using NotifyMe.App.Services;
 using NotifyMe.App.ViewModel;
 using NotifyMe.App.Views;
@@ -31,15 +32,23 @@ namespace NotifyMe.App
             Container.Register<LoginViewModel>();
             Container.Register<FriendsViewModel>();
             Container.Register<CreateMessageViewModel>();
-            Container.Register<INavigationService>(() => navigationService);
+
+			if (!Container.IsRegistered<INavigationService>())
+			{
+				Container.Register<INavigationService>(() => navigationService);
+			}
+
             Container.Register<IFacebookService, FacebookService>();
+			Container.Register<IApplicationCache, ApplicationCache>();
 
             Container.Register<LoginPage>();
             Container.Register<FriendsPage>();
             Container.Register<CreateMessagePage>();
 
             var mainPage = new NavigationPage(new LoginPage());
-            navigationService.Initialize(mainPage);
+			mainPage.BackgroundColor = Colors.Background;
+
+			navigationService.Initialize(mainPage);
 
             MainPage = mainPage;
         }

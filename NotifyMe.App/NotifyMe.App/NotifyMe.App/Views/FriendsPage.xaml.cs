@@ -12,5 +12,11 @@ namespace NotifyMe.App.Views
         {
             InitializeComponent();
         }
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			ListView.SelectedItem = null;
+		}
     }
 }

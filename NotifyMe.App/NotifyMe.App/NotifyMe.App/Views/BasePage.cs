@@ -23,5 +23,11 @@ namespace NotifyMe.App.Views
             base.OnDisappearing();
             ViewModel.OnBack();
         }
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			ViewModel.OnAppear();
+		}
     }
 }

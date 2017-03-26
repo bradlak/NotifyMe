@@ -24,12 +24,16 @@ namespace NotifyMe.App.ViewModel
     {
         public FriendsViewModel(
             INavigationService navService,
-            IFacebookService fbservice) : base(navService)
+            IFacebookService fbservice,
+			IApplicationCache cache) : base(navService)
         {
             FacebookService = fbservice;
+			Cache = cache;
         }
 
         protected IFacebookService FacebookService { get; private set; }
+
+		protected IApplicationCache Cache { get; private set; }
 
         private ICommand getFriendsCommand;
 
@@ -40,8 +44,12 @@ namespace NotifyMe.App.ViewModel
             get { return selectedFriend; }
             set
             {
+				selectedFriend = value;
+				RaisePropertyChanged();
+
                 if (value != null)
                 {
+					Cache.SelectedFriend = SelectedFriend;
                     NavigationService.NavigateTo(ViewTypes.MessageCreate, value);
                 }
             }
@@ -68,27 +76,9 @@ namespace NotifyMe.App.ViewModel
             }
         }
 
-        public async Task SendTestMessage()
-        {
-            Message message = new Message();
-            message.Body = "Wiadomość testowa";
-            message.From = MobileServiceClientWrapper.Instance.CurrentUser.Name;
-            message.RecipientId = SelectedFriend.Id;
-
-            var serialized = JsonConvert.SerializeObject(message);
-
-            var jtoken = JToken.Parse(serialized);
-
-            try
-            {
-                var result = await MobileServiceClientWrapper.Instance.Client.InvokeApiAsync("notifications/send", jtoken, HttpMethod.Post, null);
-                Messenger.Default.Send<SendedMessage>(new SendedMessage() { RecipientName = SelectedFriend.Name });
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-        }
+		public override void OnAppear()
+		{
+			SelectedFriend = null;
+		}
     }
 }

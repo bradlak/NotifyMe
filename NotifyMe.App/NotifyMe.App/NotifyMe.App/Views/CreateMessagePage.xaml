@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:TypeArguments="ViewModels:CreateMessageViewModel"
@@ -7,5 +7,17 @@
              xmlns:views="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
              x:Class="NotifyMe.App.Views.CreateMessagePage" Title="Message"
              Style="{StaticResource contentPageStyle}">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <StackLayout VerticalOptions="CenterAndExpand">
+		<Label Text="Message to:" HorizontalTextAlignment="Center" TextColor="#FFBF65" FontSize="22" />
+  <Label Text="{Binding MessageRecipient}" HorizontalTextAlignment="Center" TextColor="#FFBF65" FontAttributes="Italic" />
+		<Entry Text="{Binding MessageBody}" HorizontalTextAlignment="Center" Margin="20" />
+		    <Button Text="Send" Style="{StaticResource buttonStyle}"
+            Command="{Binding SendMessageCommand}" />
+
+		    <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"  
+			VerticalOptions="CenterAndExpand">
+      <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#FFBF65" />
+      <Label Text="Sending..." TextColor="#FFBF65"/>
+    </StackLayout>
+	</StackLayout>
 </views:BasePage>

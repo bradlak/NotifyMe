@@ -10,6 +10,7 @@ using NotifyMe.App.Infrastructure;
 using NotifyMe.App.Models;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
 [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
@@ -39,14 +40,8 @@ namespace NotifyMe.App.Droid
 
             StringContent content = new StringContent(serialized);
 
-            try
-            {
-                var task = MobileServiceClientWrapper.Instance.Client.InvokeApiAsync("notifications/register", jtoken, HttpMethod.Post, null).Result;
-            }
-            catch (Exception ex)
-            {
-                // do something
-            }
+			Task.Run(async () => 
+			         await MobileServiceClientWrapper.Instance.Client.InvokeApiAsync("notifications/register", jtoken, HttpMethod.Post, null));
         }
 
         protected override void OnMessage(Context context, Intent intent)
@@ -55,21 +50,20 @@ namespace NotifyMe.App.Droid
             string subject = intent.Extras.GetString("subject");
             if (!string.IsNullOrEmpty(message))
             {
-                CreateNotification(subject, message);
+                CreateNotification(this, subject, message);
                 return;
             }
         }
 
-        private void CreateNotification(string subject, string message)
+        private void CreateNotification(GcmService instance, string subject, string message)
         {
             var notificationManager = GetSystemService(Context.NotificationService) as NotificationManager;
 
-            var uiIntent = new Intent(this, typeof(MainActivity));
+            var uiIntent = new Intent(instance, typeof(MainActivity));
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-
-            var notification = builder.SetContentIntent(PendingIntent.GetActivity(this, 0, uiIntent, PendingIntentFlags.OneShot))
-                    .SetSmallIcon(Android.Resource.Drawable.SymActionEmail)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(instance);
+            var notification = builder.SetContentIntent(PendingIntent.GetActivity(instance, 0, uiIntent, PendingIntentFlags.OneShot))
+			        .SetSmallIcon(Resource.Drawable.icon)
                     .SetStyle(new NotificationCompat.BigTextStyle().BigText(message))
                     .SetAutoCancel(true)
                     .SetContentTitle(subject)
@@ -91,12 +85,12 @@ namespace NotifyMe.App.Droid
         }
     }
 
-        [BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
-    [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE }, Categories = new string[] { "@PACKAGE_NAME@" })]
-    [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_REGISTRATION_CALLBACK }, Categories = new string[] { "@PACKAGE_NAME@" })]
-    [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_LIBRARY_RETRY }, Categories = new string[] { "@PACKAGE_NAME@" })]
+    [BroadcastReceiver(Permission = Constants.PERMISSION_GCM_INTENTS)]
+    [IntentFilter(new string[] { Constants.INTENT_FROM_GCM_MESSAGE }, Categories = new string[] { "@PACKAGE_NAME@" })]
+    [IntentFilter(new string[] { Constants.INTENT_FROM_GCM_REGISTRATION_CALLBACK }, Categories = new string[] { "@PACKAGE_NAME@" })]
+    [IntentFilter(new string[] { Constants.INTENT_FROM_GCM_LIBRARY_RETRY }, Categories = new string[] { "@PACKAGE_NAME@" })]
     public class PushHandlerBroadcastReceiver : GcmBroadcastReceiverBase<GcmService>
     {
-        public static string[] SENDER_IDS = new string[] { "" };
+        public static string[] SENDER_IDS = new string[] { "<SENDER ID>" };
     }
 }
