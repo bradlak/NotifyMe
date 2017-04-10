@@ -68,6 +68,13 @@ namespace NotifyMe.Backend.Controllers
                     return Ok(outcome);
                 }
 
+                if(registrations.Any(r => r is AppleRegistrationDescription))
+                {
+                    var notif = "{ \"aps\" : {\"alert\":\"" + message.From + ":" + message.Body + "\", \"subject\":\"Message from " + message.From + "\", \"message\":\"" + message.Body + "\"}}";
+                    outcome = await hub.SendAppleNativeNotificationAsync(notif, message.RecipientId);
+                    return Ok(outcome);
+                }
+
                 return NotFound();
             }
             catch (Exception ex)
