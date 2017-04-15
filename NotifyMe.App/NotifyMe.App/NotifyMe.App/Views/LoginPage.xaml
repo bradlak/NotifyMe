@@ -22,8 +22,7 @@
           <Button Text="LOG IN" 
                   Command="{Binding LoginCommand}" 
                   Style="{StaticResource buttonStyle}"
-				  VerticalOptions = "CenterAndExpand"
-                  Grid.Row="1"/>
+			      Grid.Row="1"/>
       </Grid>
     </ContentPage.Content>
 </views:BasePage>

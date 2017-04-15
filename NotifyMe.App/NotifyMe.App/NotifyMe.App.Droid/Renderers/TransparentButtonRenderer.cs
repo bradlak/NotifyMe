@@ -16,12 +16,13 @@ namespace NotifyMe.App.Droid.Renderers
 
             if(Control != null)
             {
-                var button = e.NewElement;
+				var borderWidth = 5;
+				var cornerRadius = 40;
 
                 var gradient = new GradientDrawable();
                 gradient.SetColor(Android.Graphics.Color.Transparent);
-                gradient.SetStroke((int)button.BorderWidth, Colors.Primary.ToAndroid());
-                gradient.SetCornerRadius(button.BorderRadius);
+				gradient.SetStroke(borderWidth, Colors.Primary.ToAndroid());
+				gradient.SetCornerRadius(cornerRadius);
 
                 var states = new StateListDrawable();
                 states.AddState(new int[] { }, gradient);
@@ -32,12 +33,12 @@ namespace NotifyMe.App.Droid.Renderers
                     if (args.Event.Action == MotionEventActions.Down)
                     {
                         Control.SetTextColor(Colors.SecondPrimary.ToAndroid());
-                        gradient.SetStroke((int)button.BorderWidth, Colors.SecondPrimary.ToAndroid());
+						gradient.SetStroke(borderWidth, Colors.SecondPrimary.ToAndroid());
                     }
                     else if (args.Event.Action == MotionEventActions.Up)
                     {
                         Control.SetTextColor(Colors.Primary.ToAndroid());
-                        gradient.SetStroke((int)button.BorderWidth, Colors.Primary.ToAndroid());
+						gradient.SetStroke(borderWidth, Colors.Primary.ToAndroid());
                     }
                     args.Handled = false;
                 };

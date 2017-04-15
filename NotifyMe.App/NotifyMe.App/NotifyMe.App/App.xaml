@@ -14,17 +14,13 @@
       <Style x:Key="contentPageStyle" TargetType="VisualElement">
         <Setter Property="BackgroundColor" Value="#003338" />
       </Style>
-
-
-	<OnPlatform x:TypeArguments="x:Double" x:Key="PlatformBorderWidth" Android="5" iOS="3" />
-
+      	
       <Style x:Key="buttonStyle" TargetType="Button">
         <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="BorderRadius" Value="20" />
-        <Setter Property="BorderWidth" Value="{DynamicResource PlatformBorderWidth}" />
+		<Setter Property="VerticalOptions" Value="CenterAndExpand" />
         <Setter Property="WidthRequest" Value="200" />
-				<Setter Property="TextColor" Value="#FFBF65" />
-
+		<Setter Property="BorderWidth" Value="5" />
+	    <Setter Property="TextColor" Value="#FFBF65" />
       </Style>
       
       
