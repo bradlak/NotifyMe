@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{82ECCF8F-B294-4961-9BF5-919F150EEBEA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NotifyMe.App/NotifyMe.App.iOS/AppDelegate.cs">
+    <Files>
+      <File FileName="NotifyMe.App/NotifyMe.App.iOS/Renderers/TransparentButtonRenderer.cs" Line="11" Column="3" />
+      <File FileName="NotifyMe.App/NotifyMe.App.Droid/Renderers/TransparentButtonRenderer.cs" Line="24" Column="27" />
+      <File FileName="NotifyMe.App/NotifyMe.App/App.xaml" Line="18" Column="2" />
+      <File FileName="NotifyMe.App/NotifyMe.App.iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="NotifyMe.App/NotifyMe.App.iOS/AppDelegate.cs" Line="70" Column="4" />
+      <File FileName="NotifyMe.App/NotifyMe.App.Droid/GcmService.cs" Line="36" Column="32" />
+      <File FileName="../NotifyMe.Backend/Controllers/NotificationsController.cs" Line="1" Column="1" />
+      <File FileName="NotifyMe.App/NotifyMe.App.Droid/MainActivity.cs" Line="81" Column="10" />
+      <File FileName="NotifyMe.App/NotifyMe.App.iOS/Info.plist" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.NotifyMe.App.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.6E2FE634-A490-4EB4-B428-CFC1EA376CA1" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.NotifyMe.App.Droid PreferredExecutionTarget="Android.Nexus5haxm" />
+  <MultiItemStartupConfigurations />
+</Properties>
