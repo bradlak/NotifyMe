@@ -53,31 +53,20 @@ namespace NotifyMe.App.Droid
             ImageCircleRenderer.Init();
             LoadApplication(new App());
 
-			if (Build.VERSION.SdkInt > Build.VERSION_CODES.Kitkat)
-			{
-				Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 0, 51, 56));
-			}
+            if (Build.VERSION.SdkInt > Build.VERSION_CODES.Kitkat)
+            {
+                Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 0, 51, 56));
+            }
 
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<RegistrationMessage>(this, MessageHandlerExecute);
         }
 
         private void MessageHandlerExecute(RegistrationMessage obj)
         {
-            try
-            {
-                GcmClient.CheckDevice(this);
-                GcmClient.CheckManifest(this);
+            GcmClient.CheckDevice(this);
+            GcmClient.CheckManifest(this);
 
-                GcmClient.Register(this, PushHandlerBroadcastReceiver.SENDER_IDS);
-            }
-            catch (Java.Net.MalformedURLException)
-            {
-                // Do something
-            }
-            catch (Exception e)
-            {
-                // Do something
-            }
+            GcmClient.Register(this, PushHandlerBroadcastReceiver.SenderIds);
         }
     }
 }

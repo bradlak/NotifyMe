@@ -25,7 +25,7 @@ namespace NotifyMe.App.Droid
         public static string RegistrationID { get; private set; }
 
         public GcmService()
-            : base(PushHandlerBroadcastReceiver.SENDER_IDS) { }
+            : base(PushHandlerBroadcastReceiver.SenderIds) { }
 
         protected override void OnRegistered(Context context, string registrationId)
         {
@@ -91,6 +91,6 @@ namespace NotifyMe.App.Droid
     [IntentFilter(new string[] { Constants.INTENT_FROM_GCM_LIBRARY_RETRY }, Categories = new string[] { "@PACKAGE_NAME@" })]
     public class PushHandlerBroadcastReceiver : GcmBroadcastReceiverBase<GcmService>
     {
-        public static string[] SENDER_IDS = new string[] { "<SENDER ID>" };
+        public static string[] SenderIds = new string[] { "<SENDER ID>" };
     }
 }
