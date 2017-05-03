@@ -7,5 +7,7 @@
         public const string FriendsPage = "FriendsPage";
 
         public const string MessageCreate = "CreateMessagePage";
+
+        public const string MainPage = "MainPage";
     }
 }

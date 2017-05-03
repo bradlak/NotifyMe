@@ -28,10 +28,12 @@ namespace NotifyMe.App
             navigationService.Configure(ViewTypes.LoginPage, typeof(LoginPage));
             navigationService.Configure(ViewTypes.FriendsPage, typeof(FriendsPage));
             navigationService.Configure(ViewTypes.MessageCreate, typeof(CreateMessagePage));
+            navigationService.Configure(ViewTypes.MainPage, typeof(MainPage));
 
             Container.Register<LoginViewModel>();
             Container.Register<FriendsViewModel>();
             Container.Register<CreateMessageViewModel>();
+            Container.Register<HistoryViewModel>();
 
 			if (!Container.IsRegistered<INavigationService>())
 			{
@@ -44,6 +46,8 @@ namespace NotifyMe.App
             Container.Register<LoginPage>();
             Container.Register<FriendsPage>();
             Container.Register<CreateMessagePage>();
+            Container.Register<MainPage>();
+            Container.Register<HistoryPage>();
 
             var mainPage = new NavigationPage(new LoginPage());
 			mainPage.BackgroundColor = Colors.Background;

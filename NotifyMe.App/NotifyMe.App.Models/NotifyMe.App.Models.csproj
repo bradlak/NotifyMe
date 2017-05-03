@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="DeviceRegistration.cs" />
+    <Compile Include="Entities\SentMessage.cs" />
     <Compile Include="FacebookFriend.cs" />
     <Compile Include="FacebookPicture.cs" />
     <Compile Include="FriendsResponse.cs" />

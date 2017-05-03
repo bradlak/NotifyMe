@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotifyMe.App.Views.MainPage"
+             xmlns:pages="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
+             Title="" BarBackgroundColor="#486669">
+    <TabbedPage.Children>
+        <pages:FriendsPage Icon="people.png" Title="Friends"/>
+        <pages:HistoryPage Icon="history.png" Title="History"/>
+    </TabbedPage.Children>
+</TabbedPage>

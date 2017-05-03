@@ -39,7 +39,7 @@ namespace NotifyMe.App.ViewModel
 
                         Messenger.Default.Send<RegistrationMessage>(new RegistrationMessage());
 
-                        NavigationService.NavigateTo(ViewTypes.FriendsPage);
+                        NavigationService.NavigateTo(ViewTypes.MainPage);
                     }
                 }));
             }

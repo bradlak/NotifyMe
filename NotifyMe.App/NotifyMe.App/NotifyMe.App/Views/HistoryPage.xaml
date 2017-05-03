@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:TypeArguments="ViewModels:HistoryViewModel"
+             x:Class="NotifyMe.App.Views.HistoryPage"
+             xmlns:views="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
+             xmlns:ViewModels="clr-namespace:NotifyMe.App.ViewModel"
+             Style="{StaticResource contentPageStyle}"
+             Title="ListView">
+    <ListView  x:Name="historyList"
+        ItemsSource="{Binding SentMessages}"
+            HasUnevenRows="true"
+            CachingStrategy="RecycleElement"             
+            Margin="0,16,0,0">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout  BackgroundColor="#486669"  Orientation="Vertical" Margin="0,8,0,0" Padding="16,0,16,0" VerticalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding Receiver}" TextColor="#FFBF65" HorizontalOptions="StartAndExpand" FontSize="Medium" />
+                            <Label Text="{Binding Date}" TextColor="#FFBF65" HorizontalOptions="EndAndExpand" FontSize="Micro" VerticalOptions="Center" />
+                        </StackLayout>
+                        <Label Text="{Binding Body}" TextColor="#FFBF65" FontSize="Small" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</views:BasePage>
