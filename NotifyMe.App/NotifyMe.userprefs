@@ -1,5 +1,5 @@
-﻿<Properties StartupConfiguration="{82ECCF8F-B294-4961-9BF5-919F150EEBEA}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="NotifyMe.App/NotifyMe.App.iOS/AppDelegate.cs">
+﻿<Properties StartupConfiguration="{5BA8825D-6902-4868-B657-33B93AA59EC1}|Default">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="NotifyMe.App/NotifyMe.App.iOS/Renderers/TransparentButtonRenderer.cs" Line="11" Column="3" />
       <File FileName="NotifyMe.App/NotifyMe.App.Droid/Renderers/TransparentButtonRenderer.cs" Line="24" Column="27" />
@@ -8,8 +8,12 @@
       <File FileName="NotifyMe.App/NotifyMe.App.iOS/AppDelegate.cs" Line="70" Column="4" />
       <File FileName="NotifyMe.App/NotifyMe.App.Droid/GcmService.cs" Line="36" Column="32" />
       <File FileName="../NotifyMe.Backend/Controllers/NotificationsController.cs" Line="1" Column="1" />
-      <File FileName="NotifyMe.App/NotifyMe.App.Droid/MainActivity.cs" Line="81" Column="10" />
+      <File FileName="NotifyMe.App/NotifyMe.App.Droid/MainActivity.cs" Line="74" Column="1" />
       <File FileName="NotifyMe.App/NotifyMe.App.iOS/Info.plist" />
+      <File FileName="NotifyMe.App/NotifyMe.App/ViewModel/LoginViewModel.cs" Line="42" Column="72" />
+      <File FileName="NotifyMe.App/NotifyMe.App/Infrastructure/NavigationService.cs" Line="55" Column="27" />
+      <File FileName="NotifyMe.App/NotifyMe.App/Views/MainPage.xaml" Line="1" Column="1" />
+      <File FileName="NotifyMe.App/NotifyMe.App/Views/MainPage.xaml.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />

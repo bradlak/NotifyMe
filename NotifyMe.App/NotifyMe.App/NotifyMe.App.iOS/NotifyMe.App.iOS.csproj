@@ -107,6 +107,8 @@
     <BundleResource Include="Resources\Icon-Small-40%403x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\people.png" />
+    <BundleResource Include="Resources\history.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -246,6 +248,14 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\history.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\people.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\history.imageset\ic_history_white.png" />
+    <ImageAsset Include="Assets.xcassets\history.imageset\ic_history_white_2x.png" />
+    <ImageAsset Include="Assets.xcassets\history.imageset\ic_history_white_3x.png" />
+    <ImageAsset Include="Assets.xcassets\people.imageset\ic_people_outline_white.png" />
+    <ImageAsset Include="Assets.xcassets\people.imageset\ic_people_outline_white_2x.png" />
+    <ImageAsset Include="Assets.xcassets\people.imageset\ic_people_outline_white_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="azure-messaging">
@@ -255,6 +265,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\history.imageset\" />
+    <Folder Include="Assets.xcassets\people.imageset\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
