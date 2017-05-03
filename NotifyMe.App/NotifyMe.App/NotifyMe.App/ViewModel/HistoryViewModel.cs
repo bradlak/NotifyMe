@@ -7,7 +7,6 @@ namespace NotifyMe.App.ViewModel
 {
     public class HistoryViewModel : BaseViewModel
     {
-
         private ObservableCollection<SentMessage> sentMessages;
 
         public HistoryViewModel(INavigationService navigationService) 

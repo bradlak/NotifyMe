@@ -2,8 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NotifyMe.App.Views.MainPage"
+             xmlns:Res="clr-namespace:NotifyMe.App.Resources"
              xmlns:pages="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
-             Title="" BarBackgroundColor="#486669">
+             Title="" BarBackgroundColor="{x:Static Res:Colors.LighterBackground}">
     <TabbedPage.Children>
         <pages:FriendsPage Icon="people.png" Title="Friends"/>
         <pages:HistoryPage Icon="history.png" Title="History"/>
