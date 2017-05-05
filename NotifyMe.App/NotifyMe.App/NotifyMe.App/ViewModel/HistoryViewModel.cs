@@ -2,6 +2,10 @@
 using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Views;
+using NotifyMe.App.Services;
+using System.Linq;
+using NotifyMe.App.Infrastructure.Messages;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace NotifyMe.App.ViewModel
 {
@@ -9,20 +13,44 @@ namespace NotifyMe.App.ViewModel
     {
         private ObservableCollection<SentMessage> sentMessages;
 
-        public HistoryViewModel(INavigationService navigationService) 
+        private SentMessage selectedMessage;
+
+        public HistoryViewModel(
+            IDatabaseService dbService,
+            INavigationService navigationService) 
             : base(navigationService)
         {
-            SentMessages = new ObservableCollection<SentMessage>();
-            SentMessages.Add(new SentMessage() { Body = "Message...", Receiver = "John Doe", Date = DateTime.Now.AddHours(1).ToString() });
-            SentMessages.Add(new SentMessage() { Body = "Message...", Receiver = "Michael Douglas", Date = DateTime.Now.AddDays(-1).ToString() });
-            SentMessages.Add(new SentMessage() { Body = "Message...", Receiver = "Miroslav Francesc", Date = DateTime.Now.ToString() });
-            SentMessages.Add(new SentMessage() { Body = "Message...", Receiver = "Vlad Cornelius", Date = DateTime.Now.AddDays(-2).AddHours(-3).ToString() });
+            DatabaseService = dbService;
+            LoadHistory();
+            Messenger.Default.Register<RefreshHistoryMessage>(this, RefreshHistoryHandler);
         }
+
+        protected IDatabaseService DatabaseService { get; private set; }
 
         public ObservableCollection<SentMessage> SentMessages
         {
             get { return sentMessages; }
-            set { sentMessages = value; }
+            set { sentMessages = value; RaisePropertyChanged(); }
+        }
+
+        public SentMessage SelectedMessage
+        {
+            get { return selectedMessage; }
+            set { selectedMessage = value; }
+        }
+
+        public void LoadHistory()
+        {
+            var data = DatabaseService.GetAll<SentMessage>().OrderByDescending(z => DateTime.Parse(z.Date));
+            SentMessages = new ObservableCollection<SentMessage>(data);
+        }
+        private void RefreshHistoryHandler(RefreshHistoryMessage obj)
+        {
+            LoadHistory();
+        }
+
+        public override void OnBack()
+        {
         }
     }
 }

@@ -8,35 +8,43 @@
              xmlns:ViewModels="clr-namespace:NotifyMe.App.ViewModel"
              Style="{StaticResource contentPageStyle}"
              Title="ListView">
-    <ListView  x:Name="historyList"
+    <ContentView.Content>
+        <Grid>
+
+
+
+            <ListView  x:Name="historyList"
         ItemsSource="{Binding SentMessages}"
-            HasUnevenRows="true"
-            CachingStrategy="RecycleElement"             
+            HasUnevenRows="true" 
+               SelectedItem="{Binding SelectedMessage}"
             Margin="0,16,0,0">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout  BackgroundColor="{x:Static Res:Colors.LighterBackground}"  
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout  BackgroundColor="{x:Static Res:Colors.LighterBackground}"  
                                   Orientation="Vertical" Margin="0,8,0,0" 
                                   Padding="16,0,16,0" 
                                   VerticalOptions="CenterAndExpand">
-                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                            <Label Text="{Binding Receiver}" 
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Receiver}" 
                                    TextColor="{x:Static Res:Colors.Primary}"
                                    HorizontalOptions="StartAndExpand" 
                                    FontSize="Medium" />
-                            <Label Text="{Binding Date}" 
+                                    <Label Text="{Binding Date}" 
                                    TextColor="{x:Static Res:Colors.Primary}" 
                                    HorizontalOptions="EndAndExpand" 
                                    FontSize="Micro" 
                                    VerticalOptions="Center" />
-                        </StackLayout>
-                        <Label Text="{Binding Body}" 
+                                </StackLayout>
+                                <Label Text="{Binding Body}" 
                                TextColor="{x:Static Res:Colors.Primary}" 
                                FontSize="Small" />
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Text="History is empty" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="{x:Static Res:Colors.Primary}" IsVisible="{Binding SentMessages, Converter={StaticResource Key=emptySourceConverter}}"/>
+        </Grid>
+    </ContentView.Content>
 </views:BasePage>

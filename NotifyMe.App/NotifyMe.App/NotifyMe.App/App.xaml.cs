@@ -42,6 +42,7 @@ namespace NotifyMe.App
 
             Container.Register<IFacebookService, FacebookService>();
 			Container.Register<IApplicationCache, ApplicationCache>();
+            Container.Register<IDatabaseService, DatabaseService>();
 
             Container.Register<LoginPage>();
             Container.Register<FriendsPage>();
