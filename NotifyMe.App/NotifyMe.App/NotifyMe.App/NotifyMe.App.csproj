@@ -38,9 +38,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Animations\AttachedProperties.cs" />
     <Compile Include="Converters\EmptySourceConverter.cs" />
     <Compile Include="Converters\SelectedToBackgroundColorConverter.cs" />
+    <Compile Include="Enumerations\EventType.cs" />
     <Compile Include="Extensions\ImageResourceExtension.cs" />
     <Compile Include="Infrastructure\IAuthenticate.cs" />
     <Compile Include="Infrastructure\Messages\RefreshHistoryMessage.cs" />
@@ -53,6 +53,8 @@
     <Compile Include="Services\FacebookService.cs" />
     <Compile Include="Services\IDatabaseService.cs" />
     <Compile Include="Services\IFacebookService.cs" />
+    <Compile Include="Services\IMobileCenterLogger.cs" />
+    <Compile Include="Services\MobileCenterLogger.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\CreateMessageViewModel.cs" />
     <Compile Include="ViewModel\FriendsViewModel.cs" />

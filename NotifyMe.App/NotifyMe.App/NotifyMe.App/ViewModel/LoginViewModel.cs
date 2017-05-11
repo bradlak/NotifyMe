@@ -6,6 +6,7 @@ using NotifyMe.App.Services;
 using NotifyMe.App.Infrastructure;
 using GalaSoft.MvvmLight.Messaging;
 using NotifyMe.App.Infrastructure.Messages;
+using NotifyMe.App.Enumerations;
 
 namespace NotifyMe.App.ViewModel
 {
@@ -15,8 +16,9 @@ namespace NotifyMe.App.ViewModel
 
         public LoginViewModel(
             IFacebookService facebookService,
-            INavigationService navService) 
-            : base(navService)
+            INavigationService navService,
+            IMobileCenterLogger logger) 
+            : base(navService, logger)
         {
             FacebookService = facebookService;
         }
@@ -38,6 +40,7 @@ namespace NotifyMe.App.ViewModel
                         }
 
                         Messenger.Default.Send<RegistrationMessage>(new RegistrationMessage());
+                        Logger.TrackEvent(UserName, EventType.UserLogged);
 
                         NavigationService.NavigateTo(ViewTypes.MainPage);
                     }

@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NotifyMe.App.Enumerations;
 using NotifyMe.App.Infrastructure;
 using NotifyMe.App.Infrastructure.Messages;
 using NotifyMe.App.Models;
@@ -25,7 +26,8 @@ namespace NotifyMe.App.ViewModel
         public FriendsViewModel(
             INavigationService navService,
             IFacebookService fbservice,
-			IApplicationCache cache) : base(navService)
+			IApplicationCache cache,
+            IMobileCenterLogger logger) : base(navService, logger)
         {
             FacebookService = fbservice;
 			Cache = cache;
@@ -71,6 +73,7 @@ namespace NotifyMe.App.ViewModel
                 {
                     IsBusy = true;
                     Friends = new ObservableCollection<FacebookFriend>(await FacebookService.GetFacebookFriends());
+                    Logger.TrackEvent(UserName, EventType.FriendsCollected);
                     IsBusy = false;
                 }));
             }

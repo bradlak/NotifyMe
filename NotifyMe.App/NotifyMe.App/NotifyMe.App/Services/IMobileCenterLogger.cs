@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NotifyMe.App.Enumerations;
+using System;
 
 namespace NotifyMe.App.Services
 {
     public interface IMobileCenterLogger
     {
+        void TrackEvent(string userName, EventType type);
+
+        void TrackCrash(Exception ex);
     }
 }

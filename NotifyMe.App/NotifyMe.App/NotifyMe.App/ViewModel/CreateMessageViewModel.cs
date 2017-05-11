@@ -12,6 +12,7 @@ using NotifyMe.App.Models;
 using NotifyMe.App.Services;
 using NotifyMe.App.Models.Entities;
 using GalaSoft.MvvmLight.Messaging;
+using NotifyMe.App.Enumerations;
 
 namespace NotifyMe.App.ViewModel
 {
@@ -28,8 +29,9 @@ namespace NotifyMe.App.ViewModel
         public CreateMessageViewModel(
             INavigationService navigationService,
             IApplicationCache cache,
-            IDatabaseService dbService)
-            : base(navigationService)
+            IDatabaseService dbService,
+            IMobileCenterLogger logger)
+            : base(navigationService, logger)
         {
             Cache = cache;
             DatabaseService = dbService;
@@ -38,7 +40,6 @@ namespace NotifyMe.App.ViewModel
         protected IApplicationCache Cache { get; private set; }
 
         protected IDatabaseService DatabaseService { get; private set; }
-
 
         public string MessageRecipient
         {
@@ -97,7 +98,7 @@ namespace NotifyMe.App.ViewModel
             Message message = new Message()
             {
                 Body = MessageBody,
-                From = MobileServiceClientWrapper.Instance.CurrentUser.Name,
+                From = UserName,
                 RecipientId = Cache.SelectedFriend.Id
             };
 
@@ -115,6 +116,7 @@ namespace NotifyMe.App.ViewModel
 
             DatabaseService.Add<SentMessage>(new SentMessage(Cache.SelectedFriend.Name, MessageBody, DateTime.Now.ToString()));
             Messenger.Default.Send<RefreshHistoryMessage>(new RefreshHistoryMessage());
+            Logger.TrackEvent(UserName, EventType.MessageSent);
 
             IsBusy = false;
             MessageSent = true;
