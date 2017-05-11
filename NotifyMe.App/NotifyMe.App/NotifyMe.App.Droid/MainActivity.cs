@@ -12,7 +12,7 @@ using NotifyMe.App.Infrastructure.Messages;
 
 namespace NotifyMe.App.Droid
 {
-    [Activity(MainLauncher = true, Label = "NotifyMe!", Icon = "@drawable/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(MainLauncher = true, Label = "NotifyMe!", Icon = "@drawable/icon", Theme = "@style/MainTheme", WindowSoftInputMode = SoftInput.AdjustResize, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IAuthenticate
     {
         private MobileServiceUser user;

@@ -11,7 +11,7 @@ namespace NotifyMe.App.Services
             var db = Realm.GetInstance();
             db.Write(() =>
             {
-                db.Add<T>(obj);
+                db.Add<T>(obj);                
             });
         }
 

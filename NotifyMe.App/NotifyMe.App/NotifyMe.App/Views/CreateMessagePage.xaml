@@ -2,22 +2,38 @@
 <views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:TypeArguments="ViewModels:CreateMessageViewModel"
+             xmlns:Ex="clr-namespace:NotifyMe.App.Extensions"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              xmlns:ViewModels="clr-namespace:NotifyMe.App.ViewModel"
+             xmlns:attached="clr-namespace:NotifyMe.App.Animations"
              xmlns:views="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
              x:Class="NotifyMe.App.Views.CreateMessagePage" Title="Message"
              Style="{StaticResource contentPageStyle}">
-  <StackLayout VerticalOptions="CenterAndExpand">
-		<Label Text="Message to:" HorizontalTextAlignment="Center" TextColor="#FFBF65" FontSize="22" />
-  <Label Text="{Binding MessageRecipient}" HorizontalTextAlignment="Center" TextColor="#FFBF65" FontAttributes="Italic" />
-		<Entry Text="{Binding MessageBody}" HorizontalTextAlignment="Center" Margin="20" />
-		    <Button Text="Send" Style="{StaticResource buttonStyle}"
-            Command="{Binding SendMessageCommand}" />
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1*"/>
+      <RowDefinition Height="2*"/>
+    </Grid.RowDefinitions>
+    <Image Source="{Ex:ImageResource NotifyMe.App.Resources.Images.envelope.PNG}"
+           x:Name="envelope"
+        Aspect="AspectFill"
+        HeightRequest="50"
+        HorizontalOptions="Center"
+        VerticalOptions="EndAndExpand"
+        Grid.Row="0">
+    </Image>
+    <StackLayout Grid.Row="1">
+      <Label Text="Message to:" HorizontalTextAlignment="Center" TextColor="#FFBF65" FontSize="22" />
+      <Label Text="{Binding MessageRecipient}" HorizontalTextAlignment="Center" TextColor="#FFBF65" FontAttributes="Italic" />
+      <Entry Text="{Binding MessageBody}" HorizontalTextAlignment="Center" Margin="20" />
+      <Button Text="Send" Style="{StaticResource buttonStyle}"
+          Command="{Binding SendMessageCommand}" />
 
-		    <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"  
-			VerticalOptions="CenterAndExpand">
-      <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#FFBF65" />
-      <Label Text="Sending..." TextColor="#FFBF65"/>
+      <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"
+    VerticalOptions="CenterAndExpand">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#FFBF65" />
+        <Label Text="Sending..." TextColor="#FFBF65"/>
+      </StackLayout>
     </StackLayout>
-	</StackLayout>
+  </Grid>
 </views:BasePage>

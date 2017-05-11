@@ -21,6 +21,8 @@ namespace NotifyMe.App.ViewModel
 
         private string messageBody;
 
+        private bool messageSent;
+
         private ICommand sendMessageCommand;
 
         public CreateMessageViewModel(
@@ -64,6 +66,19 @@ namespace NotifyMe.App.ViewModel
             }
         }
 
+        public bool MessageSent
+        {
+            get
+            {
+                return messageSent;
+            }
+            set
+            {
+                messageSent = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public ICommand SendMessageCommand
         {
             get
@@ -78,6 +93,7 @@ namespace NotifyMe.App.ViewModel
         private async Task SendMessage()
         {
             IsBusy = true;
+
             Message message = new Message()
             {
                 Body = MessageBody,
@@ -101,14 +117,18 @@ namespace NotifyMe.App.ViewModel
             Messenger.Default.Send<RefreshHistoryMessage>(new RefreshHistoryMessage());
 
             IsBusy = false;
-
-            NavigationService.GoBack();
+            MessageSent = true;
         }
 
         public override void OnAppear()
         {
             base.OnAppear();
             MessageRecipient = Cache.SelectedFriend.Name;
+        }
+
+        public void Close()
+        {
+            NavigationService.GoBack();
         }
     }
 }

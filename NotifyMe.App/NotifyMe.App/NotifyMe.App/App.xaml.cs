@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 using NotifyMe.App.Infrastructure;
 using NotifyMe.App.Resources;
 using NotifyMe.App.Services;
@@ -61,6 +64,13 @@ namespace NotifyMe.App
         public static void Init(IAuthenticate authenticator)
         {
             Authenticator = authenticator;
+        }
+
+        protected override void OnStart()
+        {
+            MobileCenter.Start("your android key" +
+                   "your ios key",
+                   typeof(Analytics), typeof(Crashes));
         }
     }
 }
