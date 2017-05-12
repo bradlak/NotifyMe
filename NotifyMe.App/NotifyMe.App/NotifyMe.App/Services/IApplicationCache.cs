@@ -5,5 +5,7 @@ namespace NotifyMe.App
 	public interface IApplicationCache
 	{
 		FacebookFriend SelectedFriend { get; set; }
+
+        ApplicationUser CurrentUser { get; set; }
 	}
 }

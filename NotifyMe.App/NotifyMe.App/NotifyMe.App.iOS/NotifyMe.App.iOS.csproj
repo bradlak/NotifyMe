@@ -101,6 +101,7 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
     <Compile Include="Renderers\TransparentButtonRenderer.cs" />
+    <Compile Include="PlatformSpecific\IosLoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon-60%403x.png" />

@@ -18,34 +18,8 @@ namespace NotifyMe.App.iOS
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register("AppDelegate")]
-	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IAuthenticate
+	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 	{
-		private MobileServiceUser user;
-
-		public async Task<bool> Authenticate()
-		{
-			bool success = false;
-			try
-			{
-
-				user = await MobileServiceClientWrapper.Instance.Client.LoginAsync(
-					UIApplication.SharedApplication.KeyWindow.RootViewController,
-					MobileServiceAuthenticationProvider.Facebook);
-
-				if (user != null)
-				{
-					await Task.Delay(100);
-					success = true;
-				}
-			}
-			catch (Exception ex)
-			{
-
-			}
-
-			return success;
-		}
-
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -55,7 +29,6 @@ namespace NotifyMe.App.iOS
 		//
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
-			App.Init((IAuthenticate)this);
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
 			global::Xamarin.Forms.Forms.Init();

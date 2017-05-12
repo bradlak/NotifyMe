@@ -6,6 +6,7 @@
         <ResourceDictionary>
             <Converters:SelectedToBackgroundColorConverter x:Key="selectedBackgroundConverter" />
             <Converters:EmptySourceConverter x:Key="emptySourceConverter" />
+			<Converters:BoolInvertConverter x:Key="boolInvertConverter" />
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="#003338" />

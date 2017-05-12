@@ -7,6 +7,10 @@ namespace NotifyMe.App.Views
         public HistoryPage()
         {
             InitializeComponent();
+            historyList.ItemSelected += (sender, e) =>
+            {
+                historyList.SelectedItem = false;
+            };
         }
     }
 }

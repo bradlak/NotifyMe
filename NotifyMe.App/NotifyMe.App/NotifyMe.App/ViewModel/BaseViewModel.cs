@@ -12,15 +12,19 @@ namespace NotifyMe.App.ViewModel
 
         public BaseViewModel(
             INavigationService navigationService,
+            IApplicationCache cache,
             IMobileCenterLogger logger)
 		{
 			NavigationService = navigationService;
+            ApplicationCache = cache;
             Logger = logger;
 		}
 
 		protected INavigationService NavigationService { get; private set; }
 
         protected IMobileCenterLogger Logger { get; private set; }
+
+        protected IApplicationCache ApplicationCache { get; private set; }
 
 		public bool IsBusy
 		{
@@ -36,7 +40,7 @@ namespace NotifyMe.App.ViewModel
 			}
 		}
 
-        public string UserName => MobileServiceClientWrapper.Instance.CurrentUser.Name;
+        public string UserName => ApplicationCache.CurrentUser.Name;
 
 		public virtual void OnBack()
 		{

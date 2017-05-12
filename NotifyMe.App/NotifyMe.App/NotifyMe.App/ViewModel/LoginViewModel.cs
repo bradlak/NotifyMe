@@ -17,9 +17,10 @@ namespace NotifyMe.App.ViewModel
 
         public LoginViewModel(
             IFacebookService facebookService,
+            IApplicationCache cache,
             INavigationService navService,
             IMobileCenterLogger logger) 
-            : base(navService, logger)
+            : base(navService, cache, logger)
         {
             FacebookService = facebookService;
         }
@@ -32,19 +33,22 @@ namespace NotifyMe.App.ViewModel
             {
                 return loginCommand ?? (loginCommand = new RelayCommand(async () =>
                 {
+                    IsBusy = true;
                     var success = await DependencyService.Get<ILoginService>().Login();
                     if (success)
                     {
-                        if (MobileServiceClientWrapper.Instance.CurrentUser == null)
+                        if (ApplicationCache.CurrentUser == null)
                         {
-                            MobileServiceClientWrapper.Instance.CurrentUser = await FacebookService.GetCurrentApplicationUser();
+                            ApplicationCache.CurrentUser = await FacebookService.GetCurrentApplicationUser();
+                            MobileServiceClientWrapper.Instance.CurrentUser = ApplicationCache.CurrentUser;
                         }
 
                         Messenger.Default.Send<RegistrationMessage>(new RegistrationMessage());
                         Logger.TrackEvent(UserName, EventType.UserLogged);
-
-                        NavigationService.NavigateTo(ViewTypes.MainPage);
                     }
+
+                    IsBusy = false;
+                    NavigationService.NavigateTo(ViewTypes.MainPage);
                 }));
             }
         }

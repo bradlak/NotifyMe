@@ -17,9 +17,10 @@ namespace NotifyMe.App.ViewModel
 
         public HistoryViewModel(
             IDatabaseService dbService,
+            IApplicationCache cache,
             INavigationService navigationService,
             IMobileCenterLogger logger) 
-            : base(navigationService, logger)
+            : base(navigationService,cache, logger)
         {
             DatabaseService = dbService;
             LoadHistory();

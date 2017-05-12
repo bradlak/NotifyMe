@@ -1,6 +1,5 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using NotifyMe.App.Models;
-using System;
 
 namespace NotifyMe.App.Infrastructure
 {

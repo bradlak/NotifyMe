@@ -1,22 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NotifyMe.App.Enumerations;
-using NotifyMe.App.Infrastructure;
-using NotifyMe.App.Infrastructure.Messages;
 using NotifyMe.App.Models;
 using NotifyMe.App.Services;
 using NotifyMe.App.Views;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace NotifyMe.App.ViewModel
@@ -25,17 +13,14 @@ namespace NotifyMe.App.ViewModel
     {
         public FriendsViewModel(
             INavigationService navService,
+            IApplicationCache cache,
             IFacebookService fbservice,
-			IApplicationCache cache,
-            IMobileCenterLogger logger) : base(navService, logger)
+            IMobileCenterLogger logger) : base(navService, cache, logger)
         {
             FacebookService = fbservice;
-			Cache = cache;
         }
 
         protected IFacebookService FacebookService { get; private set; }
-
-		protected IApplicationCache Cache { get; private set; }
 
         private ICommand getFriendsCommand;
 
@@ -46,12 +31,12 @@ namespace NotifyMe.App.ViewModel
             get { return selectedFriend; }
             set
             {
-				selectedFriend = value;
-				RaisePropertyChanged();
+                selectedFriend = value;
+                RaisePropertyChanged();
 
                 if (value != null)
                 {
-					Cache.SelectedFriend = SelectedFriend;
+                    ApplicationCache.SelectedFriend = SelectedFriend;
                     NavigationService.NavigateTo(ViewTypes.MessageCreate, value);
                 }
             }
@@ -79,9 +64,9 @@ namespace NotifyMe.App.ViewModel
             }
         }
 
-		public override void OnAppear()
-		{
-			SelectedFriend = null;
-		}
+        public override void OnAppear()
+        {
+            SelectedFriend = null;
+        }
     }
 }

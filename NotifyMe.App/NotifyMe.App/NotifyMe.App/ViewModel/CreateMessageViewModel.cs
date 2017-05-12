@@ -31,13 +31,10 @@ namespace NotifyMe.App.ViewModel
             IApplicationCache cache,
             IDatabaseService dbService,
             IMobileCenterLogger logger)
-            : base(navigationService, logger)
+            : base(navigationService, cache, logger)
         {
-            Cache = cache;
             DatabaseService = dbService;
         }
-
-        protected IApplicationCache Cache { get; private set; }
 
         protected IDatabaseService DatabaseService { get; private set; }
 
@@ -99,7 +96,7 @@ namespace NotifyMe.App.ViewModel
             {
                 Body = MessageBody,
                 From = UserName,
-                RecipientId = Cache.SelectedFriend.Id
+                RecipientId = ApplicationCache.SelectedFriend.Id
             };
 
             var serialized = JsonConvert.SerializeObject(message);
@@ -114,7 +111,7 @@ namespace NotifyMe.App.ViewModel
                 await Task.Delay(1000);
             }
 
-            DatabaseService.Add<SentMessage>(new SentMessage(Cache.SelectedFriend.Name, MessageBody, DateTime.Now.ToString()));
+            DatabaseService.Add<SentMessage>(new SentMessage(ApplicationCache.SelectedFriend.Name, MessageBody, DateTime.Now.ToString()));
             Messenger.Default.Send<RefreshHistoryMessage>(new RefreshHistoryMessage());
             Logger.TrackEvent(UserName, EventType.MessageSent);
 
@@ -125,7 +122,7 @@ namespace NotifyMe.App.ViewModel
         public override void OnAppear()
         {
             base.OnAppear();
-            MessageRecipient = Cache.SelectedFriend.Name;
+            MessageRecipient = ApplicationCache.SelectedFriend.Name;
         }
 
         public void Close()

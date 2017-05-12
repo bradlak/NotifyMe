@@ -5,7 +5,7 @@
              xmlns:Ex="clr-namespace:NotifyMe.App.Extensions"
              xmlns:ViewModels="clr-namespace:NotifyMe.App.ViewModel"
              xmlns:views="clr-namespace:NotifyMe.App.Views;assembly=NotifyMe.App"
-             x:Class="NotifyMe.App.Views.LoginPage" 
+             x:Class="NotifyMe.App.Views.LoginPage"
              Style="{StaticResource contentPageStyle}"
              NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
@@ -19,10 +19,15 @@
                HorizontalOptions="Fill"
                Margin="35"
                Grid.Row="0" />
-          <Button Text="LOG IN" 
+          <Button Text="LOG IN" IsVisible="{Binding IsBusy, Converter={StaticResource boolInvertConverter}"
                   Command="{Binding LoginCommand}" 
                   Style="{StaticResource buttonStyle}"
 			      Grid.Row="1"/>
+
+	    <StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Grid.Row="1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#FFBF65" />
+            <Label Text="Loading..." TextColor="#FFBF65"/>
+        </StackLayout>
       </Grid>
     </ContentPage.Content>
 </views:BasePage>

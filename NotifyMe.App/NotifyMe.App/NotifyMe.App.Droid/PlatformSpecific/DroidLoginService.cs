@@ -13,14 +13,12 @@ namespace NotifyMe.App.Droid.PlatformSpecific
 
         public DroidLoginService()
         {
-            client = new MobileServiceClient(@"https://notifymeradek.azurewebsites.net");
+            client = MobileServiceClientWrapper.Instance.Client;
         }
 
         public async Task<bool> Login()
         {
-            var user = await MobileServiceClientWrapper.Instance.Client.LoginAsync(
-                MainActivity.Instance,
-                MobileServiceAuthenticationProvider.Facebook);
+            var user = await client.LoginAsync(MainActivity.Instance, MobileServiceAuthenticationProvider.Facebook);
 
             if (user != null)
             {
