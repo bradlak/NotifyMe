@@ -13,40 +13,18 @@ using NotifyMe.App.Infrastructure.Messages;
 namespace NotifyMe.App.Droid
 {
     [Activity(MainLauncher = true, Label = "NotifyMe!", Icon = "@drawable/icon", Theme = "@style/MainTheme", WindowSoftInputMode = SoftInput.AdjustResize, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IAuthenticate
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private MobileServiceUser user;
-
-        public async Task<bool> Authenticate()
-        {
-            var success = false;
-            try
-            {
-                user = await MobileServiceClientWrapper.Instance.Client.LoginAsync(this,
-                    MobileServiceAuthenticationProvider.Facebook);
-
-                if (user != null)
-                {
-                    await Task.Delay(100);
-                    success = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                // do something
-            }
-
-            return success;
-        }
+        public static MainActivity Instance;
 
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            Instance = this;
 
             base.OnCreate(bundle);
 
-            App.Init((IAuthenticate)this);
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);

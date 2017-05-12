@@ -19,8 +19,6 @@ namespace NotifyMe.App
     {
         public static SimpleIoc Container { get; set; }
 
-        public static IAuthenticate Authenticator { get; private set; }
-
         public App()
         {
             InitializeComponent();
@@ -62,15 +60,10 @@ namespace NotifyMe.App
             MainPage = mainPage;
         }
 
-        public static void Init(IAuthenticate authenticator)
-        {
-            Authenticator = authenticator;
-        }
-
         protected override void OnStart()
         {
-            MobileCenter.Start("your android key" +
-                   "your ios key",
+            MobileCenter.Start("android=your key" +
+                   "ios=your key",
                    typeof(Analytics), typeof(Crashes));
         }
     }

@@ -43,6 +43,7 @@
     <Compile Include="Enumerations\EventType.cs" />
     <Compile Include="Extensions\ImageResourceExtension.cs" />
     <Compile Include="Infrastructure\IAuthenticate.cs" />
+    <Compile Include="Infrastructure\ILoginService.cs" />
     <Compile Include="Infrastructure\Messages\RefreshHistoryMessage.cs" />
     <Compile Include="Infrastructure\Messages\RegistrationMessage.cs" />
     <Compile Include="Infrastructure\MobileServiceClientWrapper.cs" />

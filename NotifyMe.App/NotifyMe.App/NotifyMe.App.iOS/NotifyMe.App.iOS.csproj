@@ -225,6 +225,7 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\history.imageset\" />
     <Folder Include="Assets.xcassets\people.imageset\" />
+    <Folder Include="PlatformSpecific\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

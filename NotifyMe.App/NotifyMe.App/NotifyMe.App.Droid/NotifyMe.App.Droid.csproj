@@ -192,6 +192,7 @@
   <ItemGroup>
     <Compile Include="GcmService.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PlatformSpecific\DroidLoginService.cs" />
     <Compile Include="Renderers\CustomWebViewRenderer.cs" />
     <Compile Include="Renderers\TransparentButtonRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

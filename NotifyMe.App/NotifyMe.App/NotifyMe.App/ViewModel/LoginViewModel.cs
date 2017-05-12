@@ -7,6 +7,7 @@ using NotifyMe.App.Infrastructure;
 using GalaSoft.MvvmLight.Messaging;
 using NotifyMe.App.Infrastructure.Messages;
 using NotifyMe.App.Enumerations;
+using Xamarin.Forms;
 
 namespace NotifyMe.App.ViewModel
 {
@@ -31,7 +32,7 @@ namespace NotifyMe.App.ViewModel
             {
                 return loginCommand ?? (loginCommand = new RelayCommand(async () =>
                 {
-                    var success = await App.Authenticator.Authenticate();
+                    var success = await DependencyService.Get<ILoginService>().Login();
                     if (success)
                     {
                         if (MobileServiceClientWrapper.Instance.CurrentUser == null)
