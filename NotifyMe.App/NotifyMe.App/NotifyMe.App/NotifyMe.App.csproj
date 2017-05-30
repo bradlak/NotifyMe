@@ -78,6 +78,7 @@
     <Compile Include="Services\ApplicationCache.cs" />
     <Compile Include="Infrastructure\MobileServiceClientWrapper.cs" />
     <Compile Include="Converters\BoolInvertConverter.cs" />
+    <Compile Include="Converters\InvertedEmptySourceConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

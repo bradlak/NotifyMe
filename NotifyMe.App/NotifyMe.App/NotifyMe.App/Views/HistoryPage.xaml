@@ -9,10 +9,14 @@
              Style="{StaticResource contentPageStyle}"
              Title="ListView">
     <ContentView.Content>
-        <StackLayout Orientation="Vertical" Margin="0,16,0,0" >
-            <ListView  x:Name="historyList"
+         <Grid>
+    <Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+            <ListView  x:Name="historyList" Grid.Row="0"
         ItemsSource="{Binding SentMessages}"
             HasUnevenRows="true" 
+				IsVisible="{Binding SentMessages, Converter={StaticResource Key=invertedEmpty}}"
 			   SeparatorVisibility = "None"
                SelectedItem="{Binding SelectedMessage}">
                 <ListView.ItemTemplate>
@@ -43,7 +47,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="History is empty" HorizontalOptions="Center"  VerticalOptions="Center" TextColor="{x:Static Res:Colors.Primary}" IsVisible="{Binding SentMessages, Converter={StaticResource Key=emptySourceConverter}}"/>
-        </StackLayout>
+            <Label Text="History is empty" HorizontalOptions="CenterAndExpand" Grid.Row = "0"  
+			VerticalOptions="CenterAndExpand" 
+			TextColor="{x:Static Res:Colors.Primary}" 
+			IsVisible="{Binding SentMessages, Converter={StaticResource Key=emptySourceConverter}}"/>
+        </Grid>
     </ContentView.Content>
 </views:BasePage>
